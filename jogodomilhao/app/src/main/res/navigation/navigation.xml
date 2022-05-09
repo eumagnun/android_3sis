@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="br.com.danielamaral.jogo_domilhao.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_jogoFragment"
+            app:destination="@id/jogoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ganhouFragment"
+        android:name="br.com.danielamaral.jogo_domilhao.GanhouFragment"
+        android:label="GanhouFragment" />
+    <fragment
+        android:id="@+id/jogoFragment"
+        android:name="br.com.danielamaral.jogo_domilhao.JogoFragment"
+        android:label="JogoFragment" >
+        <action
+            android:id="@+id/action_jogoFragment_to_ganhouFragment"
+            app:destination="@id/ganhouFragment" />
+        <action
+            android:id="@+id/action_jogoFragment_to_perdeuFragment"
+            app:destination="@id/perdeuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perdeuFragment"
+        android:name="br.com.danielamaral.jogo_domilhao.PerdeuFragment"
+        android:label="PerdeuFragment" />
+</navigation>
