@@ -15,20 +15,30 @@
     <fragment
         android:id="@+id/ganhouFragment"
         android:name="br.com.danielamaral.jogo_domilhao.GanhouFragment"
-        android:label="GanhouFragment" />
+        android:label="GanhouFragment" >
+        <action
+            android:id="@+id/action_ganhouFragment_to_jogoFragment"
+            app:destination="@id/jogoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/jogoFragment"
         android:name="br.com.danielamaral.jogo_domilhao.JogoFragment"
         android:label="JogoFragment" >
         <action
             android:id="@+id/action_jogoFragment_to_ganhouFragment"
-            app:destination="@id/ganhouFragment" />
+            app:destination="@id/ganhouFragment"
+            app:popUpTo="@id/homeFragment" />
         <action
             android:id="@+id/action_jogoFragment_to_perdeuFragment"
-            app:destination="@id/perdeuFragment" />
+            app:destination="@id/perdeuFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/perdeuFragment"
         android:name="br.com.danielamaral.jogo_domilhao.PerdeuFragment"
-        android:label="PerdeuFragment" />
+        android:label="PerdeuFragment" >
+        <action
+            android:id="@+id/action_perdeuFragment_to_jogoFragment"
+            app:destination="@id/jogoFragment" />
+    </fragment>
 </navigation>
