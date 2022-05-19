@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import br.com.danielamaral.jogo_domilhao.databinding.FragmentGanhouBinding
+import br.com.danielamaral.show_do_milhao.Database
 
 class GanhouFragment : Fragment() {
 
@@ -23,6 +24,7 @@ class GanhouFragment : Fragment() {
             view?.findNavController()?.navigate(R.id.action_ganhouFragment_to_jogoFragment)
         }
 
+        binding.jogador = Database.jogador
 
         return binding.root
     }

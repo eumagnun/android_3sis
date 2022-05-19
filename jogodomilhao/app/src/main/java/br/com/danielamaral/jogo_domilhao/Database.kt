@@ -1,5 +1,6 @@
 package br.com.danielamaral.show_do_milhao
 
+import br.com.danielamaral.jogo_domilhao.model.Jogador
 import br.com.danielamaral.jogo_domilhao.model.Pergunta
 import br.com.danielamaral.jogo_domilhao.model.Resposta
 
@@ -7,6 +8,7 @@ class Database {
 
     companion object {
         val perguntas = mutableListOf<Pergunta>()
+        val jogador:Jogador = Jogador("")
 
         init {
             val perguntaA = "Qual time não tem mundial?"
@@ -17,7 +19,7 @@ class Database {
             perguntas.add(Pergunta(perguntaA, listaRespostasA))
 
             val perguntaB = "Qual a melhor banda do mundo?"
-            val respostaB1 = Resposta("Could Play", false)
+            val respostaB1 = Resposta("Coldplay", false)
             val respostaB2 = Resposta("Metallica", true)
             val respostaB3 = Resposta("Chiclete com Banana", false)
             val listaRespostasB = listOf(respostaB1, respostaB2, respostaB3)

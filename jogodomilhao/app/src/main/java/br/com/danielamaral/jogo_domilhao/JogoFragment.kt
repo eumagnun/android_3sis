@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import br.com.danielamaral.jogo_domilhao.databinding.FragmentJogoBinding
+import br.com.danielamaral.jogo_domilhao.model.Pergunta
 import br.com.danielamaral.show_do_milhao.Database
 
 class JogoFragment : Fragment() {
 
+    private lateinit var perguntaSelecionada: Pergunta
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,11 +22,11 @@ class JogoFragment : Fragment() {
         val binding: FragmentJogoBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_jogo, container, false)
 
-        binding.tvPergunta.text = Database.perguntas[0].texto
-        binding.rbResposta1.text = Database.perguntas[0].respostas[0].texto
-        binding.rbResposta2.text = Database.perguntas[0].respostas[1].texto
-        binding.rbResposta3.text = Database.perguntas[0].respostas[2].texto
-
+        perguntaSelecionada = selecionarPergunta()
+        binding.tvPergunta.text = perguntaSelecionada.texto
+        binding.rbResposta1.text = perguntaSelecionada.respostas[0].texto
+        binding.rbResposta2.text = perguntaSelecionada.respostas[1].texto
+        binding.rbResposta3.text = perguntaSelecionada.respostas[2].texto
 
         binding.btResponder.setOnClickListener {
             val opcaoSelecionada = binding.rgRespostas.checkedRadioButtonId
@@ -41,14 +43,13 @@ class JogoFragment : Fragment() {
             } else {
                 view?.findNavController()?.navigate(R.id.action_jogoFragment_to_perdeuFragment)
             }
-
         }
         return binding.root
     }
 
     private fun validarResposta(resposta: String): Boolean {
         var isRespostaCorreta = false
-        Database.perguntas[0].respostas.forEach { resp ->
+        perguntaSelecionada.respostas.forEach { resp ->
             if (resp.texto.equals(resposta) && resp.isCorreta) {
                 isRespostaCorreta = true
             }
@@ -56,4 +57,10 @@ class JogoFragment : Fragment() {
         return isRespostaCorreta
     }
 
+    private fun selecionarPergunta(): Pergunta {
+        Database.perguntas.shuffle()
+        val pergunta = Database.perguntas[0]
+        pergunta.respostas = pergunta.respostas.shuffled()
+        return pergunta
+    }
 }
